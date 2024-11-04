@@ -9,7 +9,7 @@ public class ClienteAgencia {
         try{
             BancoService banco = (BancoService) Naming.lookup("//localhost/BancoService");
 
-            banco.criarConta("Anne", "987654321");
+            banco.criarConta("José", "987654321");
 
             String transacaoId1 = UUID.randomUUID().toString();
             banco.depositar("987654321", 1500, transacaoId1);

@@ -7,7 +7,7 @@ public class ServidorBanco {
             BancoService banco = new BancoServiceImpl();
             LocateRegistry.createRegistry(1099);
             Naming.rebind("//localhost/BancoService", banco);
-            System.out.println("Servidor do banco está pronto");
+            System.out.println("Servidor do banco esta pronto");
         } catch (Exception e) {
            e.printStackTrace();
         }

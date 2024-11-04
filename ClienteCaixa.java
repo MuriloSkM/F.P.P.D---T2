@@ -6,22 +6,26 @@ public class ClienteCaixa {
     public static void main(String[] args) {
         try {
             BancoService banco = (BancoService) Naming.lookup("//localhost/BancoService");
-            
+            String cpf = "987654321";
+            String nome = "João";
+            banco.criarConta(nome, cpf);
+            System.out.println("Conta criada para: " + nome + " com CPF: " + cpf);
             String transacaoId1 = UUID.randomUUID().toString();
             try {
-                banco.depositar("987654321", 200, transacaoId1);
+                banco.depositar(cpf, 200, transacaoId1);
             } catch (RemoteException e) {
                 System.out.println("Erro ao depositar: " + e.getMessage());
             }
-
             String transacaoId2 = UUID.randomUUID().toString();
             try {
-                banco.sacar("987654321", 100, transacaoId2);
+                banco.sacar(cpf, 100, transacaoId2);
             } catch (RemoteException e) {
                 System.out.println("Erro ao sacar: " + e.getMessage());
             }
+            double saldo = banco.consultarSaldo(cpf);
+            System.out.println("Saldo: R$" + saldo);
+            banco.fecharConta(cpf);
 
-            System.out.println("Saldo: R$" + banco.consultarSaldo("987654321"));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -45,6 +45,11 @@ public class BancoServiceImpl extends UnicastRemoteObject implements BancoServic
         }
 
         ReentrantLock lock = locks.get(cpf);
+        if (lock == null) {
+            System.out.println("Conta não encontrada para: " + cpf);
+            return;
+        }
+
         lock.lock();
         try {
             // Simulação de falha aleatória
@@ -73,6 +78,11 @@ public class BancoServiceImpl extends UnicastRemoteObject implements BancoServic
         }
 
         ReentrantLock lock = locks.get(cpf);
+        if (lock == null) {
+            System.out.println("Conta não encontrada para: " + cpf);
+            return;
+        }
+
         lock.lock();
         try {
             // Simulação de falha aleatória
